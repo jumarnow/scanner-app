@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:scanner_card_app/datasources/document_local_datasource.dart';
+import 'package:scanner_card_app/models/document_model.dart';
 
 import '../core/colors.dart';
 
@@ -69,7 +72,7 @@ class _SaveDocumentPageState extends State<SaveDocumentPage> {
                     ))
                 .toList(),
             decoration: const InputDecoration(
-              labelText: 'Kateogri',
+              labelText: 'Kategori',
             ),
           ),
           const SizedBox(height: 16.0),
@@ -77,6 +80,18 @@ class _SaveDocumentPageState extends State<SaveDocumentPage> {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
+          DocumentModel model = DocumentModel(
+            name: nameController!.text,
+            category: selectCategory!,
+            path: widget.pathImage,
+            createdAt: DateFormat('yyyy-MM-ddTHH:mm:ss').format(DateTime.now()),
+          );
+          DocumentLocalDatasource.instance.saveDocument(model);
+          Navigator.pop(context);
+          const SnackBar(
+            content: Text('Dokumen berhasil disimpan'),
+            backgroundColor: AppColors.primary,
+          );
         },
         child: Container(
           width: MediaQuery.of(context).size.width,

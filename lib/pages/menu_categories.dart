@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scanner_card_app/pages/document_category_page.dart';
 
 import 'category_button.dart';
 
@@ -15,6 +16,11 @@ class MenuCategories extends StatelessWidget {
             imagePath: null,
             label: 'Kartu',
             onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const DocumentCategoryPage(categoryTitle: 'Kartu')));
             },
           ),
         ),
@@ -23,6 +29,11 @@ class MenuCategories extends StatelessWidget {
             imagePath: null,
             label: 'Nota',
             onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const DocumentCategoryPage(categoryTitle: 'Nota')));
             },
           ),
         ),
@@ -31,6 +42,11 @@ class MenuCategories extends StatelessWidget {
             imagePath: null,
             label: 'Surat',
             onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const DocumentCategoryPage(categoryTitle: 'Surat')));
             },
           ),
         ),

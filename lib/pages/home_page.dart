@@ -24,13 +24,13 @@ class _HomePageState extends State<HomePage> {
     documents = await DocumentLocalDatasource.instance.getAllDocuments();
     setState(() {});
   }
-  
+
   @override
   void initState() {
     super.initState();
     loadData();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.fromLTRB(16,16,16,0),
+            margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             width: double.infinity,
             height: 120,
             decoration: BoxDecoration(
@@ -61,7 +61,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SpaceHeight(8),
-                ElevatedButton(onPressed: () async {
+                ElevatedButton(
+                    onPressed: () async {
                       DocumentScannerOptions documentOptions =
                           DocumentScannerOptions(
                         documentFormat: DocumentFormat.jpeg,
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                           DocumentScanner(options: documentOptions);
                       DocumentScanningResult result =
                           await documentScanner.scanDocument();
-                      final pdf = result.pdf;
+                      // final pdf = result.pdf;
                       final images = result.images;
 
                       // log('PDF: $pdf');
@@ -87,19 +88,22 @@ class _HomePageState extends State<HomePage> {
                                     pathImage: pathImage!,
                                   )));
                       loadData();
-                    }, child: const Text('Scan')),
+                    },
+                    child: const Text('Scan Document')),
               ],
             ),
           ),
           const SpaceHeight(16),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TitleContent(title: 'Categories', onSeeAllTap: () {}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TitleContent(title: 'Categories', onSeeAllTap: () {}),
           ),
           const SpaceHeight(12),
           const MenuCategories(),
           const SpaceHeight(20),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TitleContent(title: 'Lates Documents', onSeeAllTap: () {}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TitleContent(title: 'Lates Documents', onSeeAllTap: () {}),
           ),
           const SpaceHeight(12.0),
           Expanded(
