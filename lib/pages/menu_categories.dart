@@ -17,10 +17,12 @@ class MenuCategories extends StatelessWidget {
             label: 'Kartu',
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const DocumentCategoryPage(categoryTitle: 'Kartu')));
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const DocumentCategoryPage(categoryTitle: 'Kartu'),
+                ),
+              );
             },
           ),
         ),
@@ -30,10 +32,12 @@ class MenuCategories extends StatelessWidget {
             label: 'Nota',
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const DocumentCategoryPage(categoryTitle: 'Nota')));
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const DocumentCategoryPage(categoryTitle: 'Nota'),
+                ),
+              );
             },
           ),
         ),
@@ -43,10 +47,12 @@ class MenuCategories extends StatelessWidget {
             label: 'Surat',
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const DocumentCategoryPage(categoryTitle: 'Surat')));
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const DocumentCategoryPage(categoryTitle: 'Surat'),
+                ),
+              );
             },
           ),
         ),
