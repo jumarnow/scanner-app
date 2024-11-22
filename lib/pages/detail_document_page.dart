@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:scanner_card_app/core/app_format.dart';
 import 'package:scanner_card_app/core/colors.dart';
 import 'package:scanner_card_app/core/spaces.dart';
 import 'package:scanner_card_app/models/document_model.dart';
+import 'package:scanner_card_app/models/unduh_gambar.dart';
 
 class DetailDocumentPage extends StatefulWidget {
   final DocumentModel document;
@@ -17,6 +19,18 @@ class DetailDocumentPage extends StatefulWidget {
 }
 
 class _DetailDocumentPageState extends State<DetailDocumentPage> {
+  bool isDownloading = false;
+  void startDownload() async {
+    setState(() {
+      isDownloading = true;
+    });
+
+    await unduhGambar(context, widget.document.path!);
+
+    setState(() {
+      isDownloading = false;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +40,26 @@ class _DetailDocumentPageState extends State<DetailDocumentPage> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(
-            widget.document.name!,
-            style: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primary,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.document.name!,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
+              ),
+              GestureDetector(
+                onTap: isDownloading ? null : startDownload,
+                child: const Icon(
+                  Icons.download,
+                  color: AppColors.primary,
+                  size: 30,
+                ),
+              )
+            ],
           ),
           const SpaceHeight(12),
           Row(
@@ -46,7 +73,7 @@ class _DetailDocumentPageState extends State<DetailDocumentPage> {
                 ),
               ),
               Text(
-                widget.document.createdAt!,
+                AppFormat.date(widget.document.createdAt!),
                 style: const TextStyle(
                   fontSize: 16.0,
                   color: AppColors.primary,

@@ -26,7 +26,6 @@ class _DocumentCategoryPageState extends State<DocumentCategoryPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadData();
   }
